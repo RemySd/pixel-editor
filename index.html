@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Pix Syzygy editor</title>
+    <style>
+        .pixelTable {
+            border-collapse: collapse;
+            background-color: white;
+        }
+        .pixelTable tr {
+            height: 20px;
+        }
+        .pixelTable td {
+            width: 20px;
+            border: 1px dotted lightgrey;
+            box-sizing: border-box;
+        }
+        .color-input {
+            border: 1px solid #dcdcdc;
+            -webkit-appearance: none;
+            padding: 0;
+            border: none;
+            border-radius: 50%;
+            width: 30px;
+            height: 30px;
+            cursor: pointer;
+        }
+
+        .color-input::-webkit-color-swatch {
+            border: none;
+            border-radius: 50%;
+            padding: 0;
+        }
+        .color-input::-webkit-color-swatch-wrapper {
+            border: none;
+            border-radius: 50%;
+            padding: 0;
+        }
+        .color-input:hover {
+            box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+        }
+        #pixel-tools {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+<div id="pixel-editor"></div>
+<div id="pixel-tools">
+    <input type="color" class="color-input" value="#e66465">
+</div>
+<script type="text/javascript">
+
+    class PixelEditor {
+        constructor(column, line) {
+            this.column = column;
+            this.line = line;
+        }
+
+        makeGrid(divPosition) {
+            const editor = document.getElementById(divPosition);
+
+            const table = document.createElement('table');
+            table.classList.add('pixelTable');
+
+            editor.appendChild(table);
+
+            for (let i = 0; i < this.column; i++) {
+
+                const lastLine = this.buildLine();
+                table.appendChild(lastLine)
+
+                for (let j = 0; j < this.line; j++) {
+                    const box = this.buildBox();
+                    lastLine.appendChild(box);
+                }
+            }
+        }
+
+        buildBox() {
+            let newBox = document.createElement('td');
+            newBox.classList.add('box');
+            newBox = this.buildBoxEvent(newBox);
+
+            return newBox;
+        }
+
+        buildLine() {
+            const newBoxLine = document.createElement('tr');
+            newBoxLine.classList.add('boxLine');
+
+            return newBoxLine;
+        }
+
+        buildBoxEvent(box) {
+            box.addEventListener('click', () => {
+                box.style.background = document.querySelector('.color-input').value;
+            })
+
+            return box;
+        }
+    }
+
+    const syzygyEditor = new PixelEditor(10, 10);
+    syzygyEditor.makeGrid('pixel-editor');
+</script>
+</body>
+</html>
