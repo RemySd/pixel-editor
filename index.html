@@ -156,9 +156,7 @@
                 if (this.mousedown && this.tool === 'pen') {
                     box.style.background = document.querySelector('.color-input').value;
                 }
-                let color = box.style.background.match(/rgba?\((\d{1,3}), ?(\d{1,3}), ?(\d{1,3})\)?(?:, ?(\d(?:\.\d?))\))?/);
-                console.log(color);
-                console.log(this.rgbToHex(color[1], color[2], color[3]));
+
                 if (this.tool === 'pipette') {
                     let color = box.style.background.match(/rgba?\((\d{1,3}), ?(\d{1,3}), ?(\d{1,3})\)?(?:, ?(\d(?:\.\d?))\))?/);
                     document.querySelector('.color-input').value = this.rgbToHex(color[1], color[2], color[3]);
@@ -167,12 +165,6 @@
 
             return box;
         }
-
-        componentToHex(c) {
-            var hex = Number(c).toString(16);
-            return hex.length == 1 ? "0" + hex : hex;
-        }
-
 
         rgbToHex(r, g, b) {
             return "#" + ((1 << 24) + (Number(r) << 16) + (Number(g) << 8) + Number(b)).toString(16).slice(1);
