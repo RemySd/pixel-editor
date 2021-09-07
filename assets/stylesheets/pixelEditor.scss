@@ -1,0 +1,51 @@
+.pixelTable {
+  border-collapse: collapse;
+  background-color: white;
+}
+.pixelTable tr {
+  height: 20px;
+}
+.pixelTable td {
+  width: 20px;
+  border: 1px dotted lightgrey;
+  box-sizing: border-box;
+  /*cursor: pointer;*/
+}
+.pixelTable td:hover {
+  background-color: #ececec;
+}
+.color-input {
+  border: 1px solid #dcdcdc;
+  -webkit-appearance: none;
+  padding: 0;
+  border: none;
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+  cursor: pointer;
+}
+
+.color-input::-webkit-color-swatch {
+  border: none;
+  border-radius: 50%;
+  padding: 0;
+}
+.color-input::-webkit-color-swatch-wrapper {
+  border: none;
+  border-radius: 50%;
+  padding: 0;
+}
+.color-input:hover {
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+#pixel-tools {
+  margin-top: 20px;
+}
+.pipette {
+  cursor: url("../icons/pipette.png"), auto;
+  margin-top: 10px;
+}
+.pen {
+  cursor: url("../icons/pen.png"), auto;
+  margin-top: 10px;
+}
