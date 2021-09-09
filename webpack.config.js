@@ -8,6 +8,9 @@ module.exports = {
     },
     resolve: {
         extensions: ['.tsx', '.ts', '.js'],
+        alias: {
+            scss: path.resolve(__dirname, 'assets/stylesheets/'),
+        },
     },
     module: {
         rules: [
@@ -18,8 +21,9 @@ module.exports = {
             },
             {
                 test: /\.scss$/,
-                loader: ['style-loader', 'css-loader', 'sass-loader', 'postcss-loader']
+                use: ['style-loader', 'css-loader', 'sass-loader'],
+                exclude: /node_modules/,
             }
         ],
-    },
+    }
 };
