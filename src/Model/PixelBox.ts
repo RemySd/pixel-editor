@@ -1,19 +1,21 @@
+import PixelGrid from "./PixelGrid";
+
 class PixelBox {
 
-    private id: number;
-    private color: string;
-    private htmlElement: HTMLElement;
+    private _x: number;
+    private _y: number;
+    private _pixelGrid: PixelGrid;
+    private _htmlElement: HTMLElement;
 
-    constructor(id: number, color: string) {
-        this.id = id;
-        this.color = color;
+    constructor(x: number, y: number, pixelGrid: PixelGrid) {
+        this._x = x;
+        this._y = y;
 
         // box HtmlElement
         let newBox: HTMLElement = document.createElement('td');
         newBox.classList.add('box');
 
-        this.htmlElement = newBox;
-        // newBox = this.buildBoxEvent(newBox);
+        this._htmlElement = newBox;
     }
 
     rgbToHex(red: any, green: any, blue: any): string {
@@ -21,7 +23,23 @@ class PixelBox {
     }
 
     public updateColor(newColor: string): void {
-        this.htmlElement.style.background = newColor;
+        this._htmlElement.style.background = newColor;
+    }
+
+    public get pixelGrid(): PixelGrid {
+        return this._pixelGrid;
+    }
+
+    public set pixelGrid(pixelGrid: PixelGrid) {
+        this._pixelGrid = pixelGrid;
+    }
+
+    public get x(): number {
+        return this._x;
+    }
+
+    public get y(): number {
+        return this._y;
     }
 }
 
