@@ -9,6 +9,7 @@ class PixelGrid {
     constructor(column: Number, line: Number) {
         this.column = column;
         this.line = line;
+        this._pixelBoxs = [];
     }
 
     public get pixelBoxs(): PixelBox[] {

@@ -19,62 +19,51 @@ class PixelEditorManager {
                 const pixelBox = pixelEditor.pixelGrid.getPixelBoxByPos(x,y);
 
                 if (pixelBox) {
-                    const boxDom = this.buildBox()
-                    domLine.appendChild(boxDom);
+                    domLine.appendChild(pixelBox.htmlElement);
                 }
             }
         }
-
-        // this.toolEvent();
-        //
-        // return this.pixelEditor;
     }
 
-    public buildBox(): HTMLElement {
-        let newBox: HTMLElement = document.createElement('td');
-        newBox.classList.add('box');
-        // newBox = this.buildBoxEvent(newBox);
-        newBox.style.background = '#ffffff';
-
-        return newBox;
-    }
-
-    public buildDomLine(): HTMLElement {
+    private buildDomLine(): HTMLElement {
         const newBoxLine = document.createElement('tr');
         newBoxLine.classList.add('boxLine');
+
 
         return newBoxLine;
     }
 
-    public dispatchBoxEvent(box: HTMLElement): void {
-        // box.dispatchEvent()
-    }
+    public buildBoxEvent(pixelEditor: PixelEditor): PixelEditor {
+        for (let pixelBox of pixelEditor.pixelGrid.pixelBoxs) {
+            pixelBox.htmlElement.addEventListener('mousedown', () => {
+                if (pixelEditor.tool === 'pen') {
+                    const color = (<HTMLInputElement>document.querySelector('.color-input')).value;
+                    pixelBox.updateDomColor(color);
+                }
+                if (pixelEditor.tool === 'pipette') {
+                    (<HTMLInputElement>document.querySelector('.color-input')).value = pixelBox.color;
+                }
+                pixelEditor.mousedown = true;
+            })
 
-    // public buildBoxEvent(box: HTMLElement): HTMLElement {
-    //     box.addEventListener('mousedown', () => {
-    //         if (this.pixelEditor.tool === 'pen') {
-    //             box.style.background = (<HTMLInputElement>document.querySelector('.color-input')).value;
-    //         }
-    //         if (this.pixelEditor.tool === 'pipette') {
-    //             let color = box.style.background.match(/rgba?\((\d{1,3}), ?(\d{1,3}), ?(\d{1,3})\)?(?:, ?(\d(?:\.\d?))\))?/);
-    //             (<HTMLInputElement>document.querySelector('.color-input')).value = this.rgbToHex(color[1], color[2], color[3]);
-    //         }
-    //         this.pixelEditor.mousedown = true;
-    //     })
-    //     box.addEventListener('mouseup', () => {
-    //         this.pixelEditor.mousedown = false;
-    //     })
-    //     box.addEventListener('mouseover', () => {
-    //         if (this.pixelEditor.mousedown && this.pixelEditor.tool === 'pen') {
-    //             box.style.background = (<HTMLInputElement>document.querySelector('.color-input')).value;
-    //         }
-    //
-    //         if (this.pixelEditor.mousedown && this.pixelEditor.tool === 'pipette') {
-    //             let color = box.style.background.match(/rgba?\((\d{1,3}), ?(\d{1,3}), ?(\d{1,3})\)?(?:, ?(\d(?:\.\d?))\))?/);
-    //             (<HTMLInputElement>document.querySelector('.color-input')).value = this.rgbToHex(color[1], color[2], color[3]);
-    //         }
-    //     })
-    //
-    //     return box;
-    // }
+            pixelBox.htmlElement.addEventListener('mouseup', () => {
+                pixelEditor.mousedown = false;
+            })
+
+            pixelBox.htmlElement.addEventListener('mouseover', () => {
+                if (pixelEditor.mousedown && pixelEditor.tool === 'pen') {
+                    const color = (<HTMLInputElement>document.querySelector('.color-input')).value;
+                    pixelBox.updateDomColor(color);
+                }
+
+                if (pixelEditor.mousedown && pixelEditor.tool === 'pipette') {
+                    (<HTMLInputElement>document.querySelector('.color-input')).value = pixelBox.color;
+                }
+            })
+        }
+
+        return pixelEditor;
+    }
 }
+
+export default PixelEditorManager;
