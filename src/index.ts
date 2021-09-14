@@ -8,3 +8,4 @@ const pixelEditor = PixelEditorFactory.buildPixelEditor('pixel-editor', 10, 10);
 
 pixelEditorManager.buildDomPixelEditor(pixelEditor);
 pixelEditorManager.buildBoxEvent(pixelEditor);
+pixelEditorManager.buildToolEvent(pixelEditor);
