@@ -5,7 +5,4 @@ import 'scss/pixelEditor.scss';
 const pixelEditorManager = new PixelEditorManager();
 
 const pixelEditor = PixelEditorFactory.buildPixelEditor('pixel-editor', 10, 10);
-
-pixelEditorManager.buildDomPixelEditor(pixelEditor);
-pixelEditorManager.buildBoxEvent(pixelEditor);
-pixelEditorManager.buildToolEvent(pixelEditor);
+pixelEditorManager.init(pixelEditor);

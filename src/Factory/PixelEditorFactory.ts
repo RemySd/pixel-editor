@@ -10,6 +10,7 @@ class PixelEditorFactory {
         for (let i = 0; i < column; i++) {
             for (let j = 0; j < line; j++) {
                 const pixelBox = new PixelBox(i, j, pixelEditor.pixelGrid)
+                pixelEditor.pixelGrid.addPixelBox(pixelBox);
             }
         }
 

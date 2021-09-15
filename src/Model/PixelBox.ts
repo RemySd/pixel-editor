@@ -13,7 +13,6 @@ class PixelBox {
         this._y = y;
         this._color = '#ffffff';
         this._pixelGrid = pixelGrid;
-        pixelGrid.addPixelBox(this);
 
         // box HtmlElement
         let newBox: HTMLElement = document.createElement('td');

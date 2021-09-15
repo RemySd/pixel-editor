@@ -15,17 +15,25 @@ class PixelEditorManager {
         this.PIPETTE
     ];
 
-    public buildDomPixelEditor(pixelEditor: PixelEditor) {
+    public init(pixelEditor: PixelEditor): void {
+        this.buildDomPixelEditor(pixelEditor);
+        this.buildBoxEvent(pixelEditor);
+        this.buildToolEvent(pixelEditor);
+    }
+
+    private buildDomPixelEditor(pixelEditor: PixelEditor) {
 
         const domEditor = document.getElementById(pixelEditor.id);
-
+        const container = document.createElement('div');
         const domTable = document.createElement('table');
         domTable.classList.add('pixelTable');
 
-        domEditor.appendChild(domTable);
+        container.appendChild(domTable)
+        domEditor.appendChild(container);
 
         for (let x = 0; x < pixelEditor.pixelGrid.column; x++) {
-            const domLine = this.buildDomLine();
+            const domLine = document.createElement('tr');
+            domLine.classList.add('boxLine');
             domTable.appendChild(domLine)
 
             for (let y = 0; y < pixelEditor.pixelGrid.line; y++) {
@@ -38,15 +46,7 @@ class PixelEditorManager {
         }
     }
 
-    private buildDomLine(): HTMLElement {
-        const newBoxLine = document.createElement('tr');
-        newBoxLine.classList.add('boxLine');
-
-
-        return newBoxLine;
-    }
-
-    public buildBoxEvent(pixelEditor: PixelEditor): PixelEditor {
+    private buildBoxEvent(pixelEditor: PixelEditor): PixelEditor {
         for (let pixelBox of pixelEditor.pixelGrid.pixelBoxs) {
             pixelBox.htmlElement.addEventListener('mousedown', () => {
                 if (pixelEditor.tool === 'pen') {
@@ -78,7 +78,7 @@ class PixelEditorManager {
         return pixelEditor;
     }
 
-    public buildToolEvent(pixelEditor: PixelEditor): void {
+    private buildToolEvent(pixelEditor: PixelEditor): void {
         document.body.addEventListener('keyup', (event) => {
 
             if (!this.AVAILABLE_KEYCODE.includes(event.keyCode)) {
