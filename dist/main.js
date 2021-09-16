@@ -120,6 +120,16 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpac
 
 /***/ }),
 
+/***/ "./src/Factory/PixelToolFactory.ts":
+/*!*****************************************!*\
+  !*** ./src/Factory/PixelToolFactory.ts ***!
+  \*****************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (__WEBPACK_DEFAULT_EXPORT__)\n/* harmony export */ });\nvar PixelEditorFactory = /** @class */ (function () {\n    function PixelEditorFactory() {\n    }\n    PixelEditorFactory.buildPixelTool = function (pixelEditor) {\n        var domPixelEditor = document.getElementById(pixelEditor.id);\n        var domPixelTool = document.createElement('div');\n        domPixelTool.id = 'pixel-tools';\n        var colorInput = document.createElement('input');\n        colorInput.setAttribute('type', 'color');\n        colorInput.value = '#000000';\n        colorInput.classList.add('color-input');\n        domPixelTool.appendChild(colorInput);\n        domPixelEditor.appendChild(domPixelTool);\n    };\n    return PixelEditorFactory;\n}());\n/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (PixelEditorFactory);\n\n\n//# sourceURL=webpack://pixel-editor/./src/Factory/PixelToolFactory.ts?");
+
+/***/ }),
+
 /***/ "./src/Manager/PixelEditorManager.ts":
 /*!*******************************************!*\
   !*** ./src/Manager/PixelEditorManager.ts ***!
@@ -166,7 +176,7 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpac
   \**********************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _Factory_PixelEditorFactory__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Factory/PixelEditorFactory */ \"./src/Factory/PixelEditorFactory.ts\");\n/* harmony import */ var _Manager_PixelEditorManager__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Manager/PixelEditorManager */ \"./src/Manager/PixelEditorManager.ts\");\n/* harmony import */ var scss_pixelEditor_scss__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! scss/pixelEditor.scss */ \"./assets/stylesheets/pixelEditor.scss\");\n\n\n\nvar pixelEditorManager = new _Manager_PixelEditorManager__WEBPACK_IMPORTED_MODULE_1__[\"default\"]();\nvar pixelEditor = _Factory_PixelEditorFactory__WEBPACK_IMPORTED_MODULE_0__[\"default\"].buildPixelEditor('pixel-editor', 10, 10);\npixelEditorManager.init(pixelEditor);\n\n\n//# sourceURL=webpack://pixel-editor/./src/index.ts?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _Factory_PixelEditorFactory__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Factory/PixelEditorFactory */ \"./src/Factory/PixelEditorFactory.ts\");\n/* harmony import */ var _Manager_PixelEditorManager__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Manager/PixelEditorManager */ \"./src/Manager/PixelEditorManager.ts\");\n/* harmony import */ var scss_pixelEditor_scss__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! scss/pixelEditor.scss */ \"./assets/stylesheets/pixelEditor.scss\");\n/* harmony import */ var _Factory_PixelToolFactory__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./Factory/PixelToolFactory */ \"./src/Factory/PixelToolFactory.ts\");\n\n\n\n\nvar pixelEditorManager = new _Manager_PixelEditorManager__WEBPACK_IMPORTED_MODULE_1__[\"default\"]();\nvar pixelEditor = _Factory_PixelEditorFactory__WEBPACK_IMPORTED_MODULE_0__[\"default\"].buildPixelEditor('pixel-editor', 10, 10);\npixelEditorManager.init(pixelEditor);\n_Factory_PixelToolFactory__WEBPACK_IMPORTED_MODULE_3__[\"default\"].buildPixelTool(pixelEditor);\n\n\n//# sourceURL=webpack://pixel-editor/./src/index.ts?");
 
 /***/ }),
 
